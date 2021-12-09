@@ -1,0 +1,113 @@
+create table customer (
+customer_id varchar2(20),
+customer_name varchar2(20) not null,
+customer_tel number
+);
+
+alter table customer add constraint pk_customer PRIMARY KEY(customer_id);
+
+create table product (
+product_id varchar2(20),
+product_name varchar2(20) not null,
+category varchar2(20),
+price number check(price>0)
+);
+
+alter table product add constraint pk_product PRIMARY KEY(product_id);
+
+create table orders (
+customer_id varchar2(20),
+product_id varchar2(20),
+OrderDate date,
+quantity number,
+total_amount number
+);
+
+alter table orders add constraint fk_orders FOREIGN KEY(customer_id);
+
+alter table orders add constraint fk_orders FOREIGN KEY(product_id);
+
+insert into product
+(
+product_id,
+product_name,
+category,
+price
+)
+values
+(
+P01,
+Samsung Galaxy S20,
+Smartphone,
+3299
+);
+
+insert into product
+(
+product_id,
+product_name,
+category,
+price
+)
+values
+(
+P02,
+ASUS Notebook,
+PC,
+4599
+);
+
+insert into customer
+(
+customer_id,
+customer_name,
+customer_tel
+)
+values
+(
+C01,
+ALI,
+71321009
+);
+insert into customer
+(
+customer_id,
+customer_name,
+customer_tel
+)
+values
+(
+Co2,
+ASMA,
+77345823
+);
+
+insert into orders(
+customer_id,
+product_id,
+OrderDate,
+quantity,
+total_amount
+)
+values
+(
+C01,
+P02,
+NULL,
+2,
+9198
+);
+insert into orders(
+customer_id,
+product_id,
+OrderDate,
+quantity,
+total_amount
+)
+values
+(
+Co2,
+P01,
+28/05/2020,
+1,
+3299
